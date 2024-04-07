@@ -38,6 +38,7 @@ const delItem = (event) => {
     target.remove();
 };
 
+//check박스 event 생성
 const checkItem = (event) => {
     const target = event.target.parentElement;
     const todo = todos.find((todo) => todo.id === parseInt(target.id));
