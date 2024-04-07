@@ -10,14 +10,23 @@ const addItem = (todo) => {
         const li = document.createElement('li');
         const button = document.createElement('button');
         const span = document.createElement('span');
+        const checkbox = document.createElement('input'); //체크박스 생성
+        
+        span.className = 'span'; // 'checkbox' 클래스 추가
+        checkbox.className = 'checkbox'; // 'checkbox' 클래스 추가
 
+        
+        checkbox.type = 'checkbox'; //체크박스 타입 지정
+        checkbox.addEventListener('change', checkItem);
+        
         span.innerHTML = todo.text;
         button.textContent = '삭제';
         button.addEventListener('click', delItem);
 
+        li.appendChild(checkbox); // li에 체크박스 추가
         li.appendChild(span);
         li.appendChild(button);
-        ul.appendChild(li); // ul에 li 추가
+        ul.appendChild(li);
         li.id = todo.id;
     }
 }
@@ -28,10 +37,16 @@ const save = () => {
 
 const delItem = (event) => {
     const target = event.target.parentElement;
-
     todos = todos.filter((todo) => todo.id !== parseInt(target.id))
     save();
     target.remove();
+};
+
+const checkItem = (event) => {
+    const target = event.target.parentElement;
+    const todo = todos.find((todo) => todo.id === parseInt(target.id));
+    todo.completed = !todo.completed;
+    save();
 };
 
 // callback 함수
