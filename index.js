@@ -12,10 +12,6 @@ const addItem = (todo) => {
         const span = document.createElement('span');
         const checkbox = document.createElement('input'); //체크박스 생성
         
-        span.className = 'span'; // 'checkbox' 클래스 추가
-        checkbox.className = 'checkbox'; // 'checkbox' 클래스 추가
-
-        
         checkbox.type = 'checkbox'; //체크박스 타입 지정
         checkbox.addEventListener('change', checkItem);
         
